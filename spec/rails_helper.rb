@@ -34,10 +34,10 @@ RSpec.configure do |config|
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
       provider: 'twitter',
-      uid: '12345',
+      uid: '173017402',
       info: {
-        nickname: 'newtwillnet',
-        image: 'http://example.com/twillnet.jpg'
+        nickname: 'otofu-square',
+        image: 'http://otofu.com/otofu.jpg'
       }
     })
   end

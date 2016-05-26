@@ -30,6 +30,18 @@ require 'capybara/rspec'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.before(:all, type: :feature) do
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+      provider: 'twitter',
+      uid: '12345',
+      info: {
+        nickname: 'newtwillnet'
+        image: 'http://example.com/twillnet.jpg'
+      }
+    })
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

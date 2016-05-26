@@ -38,6 +38,9 @@ gem 'omniauth-twitter'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
+  # Test framework
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -46,9 +49,6 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-
-  # Test framework
-  gem 'rspec-rails'
 
   # Debugger
   gem 'byebug'

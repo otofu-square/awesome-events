@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'ユーザがシステムにログインをする' do
-  context 'トップページの"Twiterでログイン"ボタンを押下したとき' do
+RSpec.feature "Logins", type: :feature do
+  describe 'ユーザがシステムにログインをする' do
     context 'Twitterログインに成功したとき' do
       before do
         visit root_path

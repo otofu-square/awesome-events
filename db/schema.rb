@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20160527020442) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "events", ["owner_id"], name: "index_events_on_owner_id"
+
   create_table "users", force: :cascade do |t|
     t.string   "provider",   null: false
     t.string   "uid",        null: false

@@ -2,7 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
   describe 'validation' do
-    subject { FactoryGirl.create(:event) }
+    subject do
+      Event.new(
+        name:       'otofu',
+        place:      'tokyo',
+        content:    'content_test',
+        start_time: Time.now,
+        end_time:   Time.now
+      )
+    end
 
     context 'valid' do
       it { is_expected.to be_valid }
@@ -33,8 +41,18 @@ RSpec.describe Event, type: :model do
       end
 
       describe 'start_time_should_be_before_end_time' do
+        let(:event) do
+          Event.new(
+            name:       'otofu',
+            place:      'tokyo',
+            content:    'content_test',
+            start_time: Time.local(2016, 5),
+            end_time:   Time.local(2016, 4)
+          )
+        end
+
         it 'start_time >= end_time' do
-          expect(FactoryGirl.build(:event, start_time: Time.local(2016, 5), end_time: Time.local(2016, 4)).invalid?).to be_truthy
+          expect(event.invalid?).to be_truthy
         end
       end
     end

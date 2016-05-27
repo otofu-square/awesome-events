@@ -42,7 +42,7 @@ group :development, :test do
   # Test framework
   gem 'rspec-rails'
 
-  gem "shoulda-matchers"
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
 end
 

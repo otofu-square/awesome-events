@@ -28,7 +28,7 @@ RSpec.describe Event, type: :model do
       end
 
       describe 'content' do
-        it { is_expected.not_to allow_value('a'*201).for(:content) }
+        it { is_expected.not_to allow_value('a'*2001).for(:content) }
         it { is_expected.not_to allow_value('').for(:content) }
       end
 

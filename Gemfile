@@ -41,6 +41,8 @@ group :development, :test do
 
   # Test framework
   gem 'rspec-rails'
+
+  gem 'shoulda-matchers'
 end
 
 group :test do

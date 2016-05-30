@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def authenticate
+    return if logged_in?
+    redirect_to root_path
+  end
+
   def logged_in?
     !!session[:user_id]
   end

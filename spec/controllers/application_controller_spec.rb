@@ -27,7 +27,7 @@ RSpec.describe ApplicationController, type: :controller do
       expect(response).to redirect_to root_path
     end
 
-    it 'flashに格納されるメッセージが"ログインしていません"であること' do
+    it 'flashに格納されるメッセージが "ログインしてください。" であること' do
       expect(flash[:alert]).to eq 'ログインしてください。'
     end
   end

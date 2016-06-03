@@ -25,4 +25,30 @@ RSpec.describe EventsController, type: :controller do
       expect(controller.instance_variable_get("@event")).to be_a_new(Event)
     end
   end
+
+  describe 'POST /events/' do
+    before do
+      get :new
+    end
+
+    context '登録成功するとき' do
+      it 'ステータスコードが200であること'
+
+      it '/event/:作成したイベントID にリダイレクトされること'
+
+      it 'フォーム送信されたデータと、DBに登録されたデータが一致すること'
+
+      it 'flash[:notice] に 作成しました という文字列が格納されていること'
+    end
+
+    context '登録失敗するとき' do
+      it 'ステータスコードが200であること'
+
+      it 'ビューとして new.html.erb が呼ばれること'
+
+      context '指定されていないパラメータを受け取ったとき' do
+        it 'ActionController::UnpermittedParametersの例外が発生すること'
+      end
+    end
+  end
 end

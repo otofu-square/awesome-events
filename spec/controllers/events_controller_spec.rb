@@ -35,9 +35,13 @@ RSpec.describe EventsController, type: :controller do
     end
 
     context '登録成功するとき' do
-      it 'ステータスコードが200であること'
+      it 'ステータスコードが200であること' do
+        expect(response.status).to eq 200
+      end
 
-      it '/event/:作成したイベントID にリダイレクトされること'
+      it '/event/:作成したイベントID にリダイレクトされること' do
+        expect(response).to redirect_to controller.instance_variable_get("@event")
+      end
 
       it 'フォーム送信されたデータと、DBに登録されたデータが一致すること'
 

@@ -35,8 +35,8 @@ RSpec.describe EventsController, type: :controller do
     end
 
     context '登録成功するとき' do
-      it 'ステータスコードが200であること' do
-        expect(response.status).to eq 200
+      it 'ステータスコードが302であること' do
+        expect(response.status).to eq 302
       end
 
       it '/event/:作成したイベントID にリダイレクトされること' do

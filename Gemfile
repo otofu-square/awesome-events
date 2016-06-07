@@ -69,5 +69,8 @@ group :development do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
+
+  # Deploy tool
+  gem 'capistrano'
 end
 gem 'nokogiri', '>= 1.6.8'

@@ -2,13 +2,13 @@
 lock '3.5.0'
 
 set :application, 'awesome_events'
-set :repo_url, 'git@example.com:otofu-square/awesome_events.git'
+set :repo_url, 'git@github.com:otofu-square/awesome_events.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/www/awesome_events'
+set :deploy_to, '/var/www/awesome-events'
 
 # Default value for :scm is :git
 set :scm, :git

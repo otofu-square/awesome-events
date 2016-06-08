@@ -2,7 +2,7 @@
 listen '127.0.0.1:3000'
 
 # pid_fileの位置を設定
-pid File.expand_path('tmp/pids/unicorn.pid', __FILE__)
+pid 'tmp/pids/unicorn.pid'
 
 # Unicornは複数のワーカーで起動するのでワーカー数を定義
 # サーバーのメモリなどによって変更すること。
@@ -15,9 +15,8 @@ timeout 15
 preload_app true
 
 # Unicornのエラーログと通常ログの位置を指定。
-ROOT = File.dirname(File.dirname(__FILE__))
-stderr_path File.expand_path("#{ROOT}/log/unicorn_stderr.log', __FILE__")
-stdout_path File.expand_path("#{ROOT}/log/unicorn_stdout.log', __FILE__")
+stderr_path 'log/unicorn_stderr.log'
+stdout_path 'log/unicorn_stdout.log'
 
 # USR2シグナルを受けると古いプロセスを止める。
 # 後述するが、記述しておくとNginxと連携する時に良いことがある。

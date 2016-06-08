@@ -34,8 +34,8 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :default_env, {
-  rbenv_root: '/usr/local/rbenv'
-  path: '/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH'
+  rbenv_root: '/home/ops/.rbenv/',
+  path: '/home/ops/.rbenv/shims:/home/ops/.rbenv/bin:$PATH'
 }
 
 set :rails_env, :staging

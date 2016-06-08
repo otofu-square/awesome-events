@@ -24,8 +24,9 @@ RSpec.describe EventsController, type: :controller do
       expect(response).to render_template 'new'
     end
 
-    it '@event に空イベントが格納されていること' do
+    it '@event にセッションのユーザIDと紐付く空イベントが格納されていること' do
       expect(assigns(:event)).to be_a_new(Event)
+      expect(assigns(:event).owner_id).to eq @user.id
     end
   end
 

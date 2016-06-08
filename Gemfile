@@ -73,5 +73,8 @@ group :development do
 
   # Deploy tool
   gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
 end
 gem 'nokogiri', '>= 1.6.8'

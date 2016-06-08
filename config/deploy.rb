@@ -33,19 +33,22 @@ set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/sys
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, {
+  rbenv_root: '/usr/local/rbenv'
+  path: '/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH'
+}
+
+set :rails_env, :staging
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
+set :unicorn_rack_env, 'none'
+set :unicorn_config_path, 'config/unicorn.rb'
+
+after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
+  task :restart do
+    invoke 'unicorn:restart'
   end
-
 end

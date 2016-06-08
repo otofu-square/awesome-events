@@ -25,7 +25,7 @@ RSpec.describe EventsController, type: :controller do
     end
 
     it '@event に空イベントが格納されていること' do
-      expect(controller.instance_variable_get("@event")).to be_a_new(Event)
+      expect(assigns(:event)).to be_a_new(Event)
     end
   end
 
@@ -48,12 +48,12 @@ RSpec.describe EventsController, type: :controller do
       end
 
       it '/event/:作成したイベントID にリダイレクトされること' do
-        expect(response).to redirect_to controller.instance_variable_get("@event")
+        expect(response).to redirect_to assigns(:event)
       end
 
       it 'フォーム送信されたデータと、DBに登録されたデータが一致すること' do
         columns = @params[:event].keys
-        expect(controller.instance_variable_get("@event").attributes.symbolize_keys.slice(*columns)).to eq @params[:event]
+        expect(assigns(:event).attributes.symbolize_keys.slice(*columns)).to eq @params[:event]
       end
 
       it 'flash[:notice] に「作成しました。」という文字列が格納されていること' do
@@ -76,7 +76,7 @@ RSpec.describe EventsController, type: :controller do
       end
 
       it '@eventにエラー情報が格納されていること' do
-        expect(controller.instance_variable_get("@event").errors.any?).to be_truthy
+        expect(assigns(:event).errors.any?).to be_truthy
       end
     end
   end

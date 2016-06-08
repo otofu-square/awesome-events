@@ -62,10 +62,22 @@ RSpec.describe EventsController, type: :controller do
     end
 
     context '登録失敗するとき' do
-      it 'ステータスコードが200であること'
+      before do
+        @params[:event][:start_time] = 'valid_err'
+        post :create, @params
+      end
 
-      it 'ビューとして new.html.erb が呼ばれること'
+      it 'ステータスコードが200であること' do
+        expect(response.status).to eq 200
+      end
 
+      it 'ビューとして new.html.erb が呼ばれること' do
+        expect(response).to render_template(:new)
+      end
+
+      it '@eventにエラー情報が格納されていること' do
+        expect(controller.instance_variable_get("@event").errors.any?).to be_truthy
+      end
     end
   end
 end

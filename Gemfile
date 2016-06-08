@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'omniauth'
 gem 'omniauth-twitter'
 
+gem 'dotenv-rails'
 gem 'slim-rails'
 
 # Use ActiveModel has_secure_password

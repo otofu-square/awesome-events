@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   def create
     @event = User.find(session[:user_id]).created_events.build(event_params)
     @event.save
-    redirect_to @event
+    redirect_to @event, notice: '作成しました。'
   end
 
   private

@@ -2,12 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
   before do
-    @user = User.create(
-      provider: 'twitter',
-      uid: '12345',
-      nickname: 'nickname_test',
-      image_url: 'image.jpg'
-    )
+    @user = FactoryGirl.create(:user)
     session[:user_id] = @user.id
   end
 
@@ -31,20 +26,9 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe 'POST /events/' do
-    before do
-      @params = {
-        event: {
-          name:       'test.name',
-          place:      'test.place',
-          start_time: Time.local(2015, 1),
-          end_time:   Time.local(2016, 1),
-          content:    'test.content'
-        }
-      }
-    end
-
     context '登録成功するとき' do
       before do
+        @params = { event: FactoryGirl.attributes_for(:event) }
         post :create, @params
       end
 
@@ -64,7 +48,7 @@ RSpec.describe EventsController, type: :controller do
 
     context '登録失敗するとき' do
       before do
-        @params[:event][:start_time] = 'valid_err'
+        @params = { event: FactoryGirl.attributes_for(:event, :with_blank) }
         post :create, @params
       end
 

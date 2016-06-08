@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
   before do
-    @user = FactoryGirl.create(:user)
+    @user = create(:user)
     session[:user_id] = @user.id
   end
 
@@ -28,7 +28,7 @@ RSpec.describe EventsController, type: :controller do
   describe 'POST /events/' do
     context '登録成功するとき' do
       before do
-        @params = { event: FactoryGirl.attributes_for(:event) }
+        @params = { event: attributes_for(:event) }
         post :create, @params
       end
 
@@ -48,7 +48,7 @@ RSpec.describe EventsController, type: :controller do
 
     context '登録失敗するとき' do
       before do
-        @params = { event: FactoryGirl.attributes_for(:event, :with_blank) }
+        @params = { event: attributes_for(:event, :with_blank) }
         post :create, @params
       end
 

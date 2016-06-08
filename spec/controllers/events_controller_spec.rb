@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
   before do
-    user = User.create(
+    @user = User.create(
       provider: 'twitter',
       uid: '12345',
       nickname: 'nickname_test',
       image_url: 'image.jpg'
     )
-    session[:user_id] = user.id
+    session[:user_id] = @user.id
   end
 
   describe 'GET /events/new' do
@@ -31,12 +31,20 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'POST /events/' do
     before do
-      post :create
+      @params = {
+        event: {
+          name:       'test.name',
+          place:      'test.place',
+          start_time: Time.local(2015, 1),
+          end_time:   Time.local(2016, 1),
+          content:    'test.content'
+        }
+      }
     end
 
     context '登録成功するとき' do
-      it 'ステータスコードが302であること' do
-        expect(response.status).to eq 302
+      before do
+        post :create, @params
       end
 
       it '/event/:作成したイベントID にリダイレクトされること' do
@@ -53,9 +61,6 @@ RSpec.describe EventsController, type: :controller do
 
       it 'ビューとして new.html.erb が呼ばれること'
 
-      context '指定されていないパラメータを受け取ったとき' do
-        it 'ActionController::UnpermittedParametersの例外が発生すること'
-      end
     end
   end
 end

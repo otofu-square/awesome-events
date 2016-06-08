@@ -51,7 +51,10 @@ RSpec.describe EventsController, type: :controller do
         expect(response).to redirect_to controller.instance_variable_get("@event")
       end
 
-      it 'フォーム送信されたデータと、DBに登録されたデータが一致すること'
+      it 'フォーム送信されたデータと、DBに登録されたデータが一致すること' do
+        columns = @params[:event].keys
+        expect(controller.instance_variable_get("@event").attributes.symbolize_keys.slice(*columns)).to eq @params[:event]
+      end
 
       it 'flash[:notice] に 作成しました という文字列が格納されていること'
     end

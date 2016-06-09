@@ -108,6 +108,10 @@ RSpec.describe EventsController, type: :controller do
       it 'イベント一覧画面にリダイレクトされること' do
         expect(response).to redirect_to action: 'index'
       end
+
+      it 'flash[:alert] に「ご指定のイベントは存在しません。」という文字列が格納されていること' do
+        expect(flash[:alert]).to eq 'ご指定のイベントは存在しません。'
+      end
     end
   end
 end

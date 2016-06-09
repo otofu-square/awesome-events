@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'pry-rails'
 
 RSpec.describe EventsController, type: :controller do
   shared_examples_for 'authenticate' do

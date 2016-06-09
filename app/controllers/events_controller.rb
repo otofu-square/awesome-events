@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     if Event.exists?(params[:id])
       @event = Event.find(params[:id])
     else
-      redirect_to Event
+      redirect_to Event, alert: 'ご指定のイベントは存在しません。'
     end
   end
 

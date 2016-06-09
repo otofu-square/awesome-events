@@ -44,6 +44,10 @@ RSpec.configure do |config|
     })
   end
 
+  # FactoryGirlのメソッド呼び出しの際にクラス名を省略するための設定
+  config.include FactoryGirl::Syntax::Methods
+
+  # ActiveModelのテストにおいてShouldaMatchersが提供するマッチャを使用するための設定
   config.include Shoulda::Matchers::ActiveModel, type: :model
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

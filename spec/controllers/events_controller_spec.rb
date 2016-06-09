@@ -81,4 +81,37 @@ RSpec.describe EventsController, type: :controller do
       let(:response) { post :create }
     end
   end
+
+  describe 'GET /events/:id' do
+    context '存在するイベントIDが指定された場合' do
+      before do
+        @event = create(:event)
+        get :show, id: @event.id
+      end
+
+      it 'ステータスコードが200であること' do
+        expect(response.status).to eq 200
+      end
+
+      it 'ビューとして show.html.erb が呼ばれること' do
+        expect(response).to render_template 'show'
+      end
+
+      it '@event にパラメータで渡したイベントIDと一致するインスタンスが格納されていること' do
+        expect(assigns(:event).id).to eq @event.id
+      end
+    end
+
+    context '存在しないイベントIDが指定された場合' do
+      before { get :show, id: 0 }
+
+      it 'イベント一覧画面にリダイレクトされること' do
+        expect(response).to redirect_to action: 'index'
+      end
+
+      it 'flash[:alert] に「ご指定のイベントは存在しません。」という文字列が格納されていること' do
+        expect(flash[:alert]).to eq 'ご指定のイベントは存在しません。'
+      end
+    end
+  end
 end

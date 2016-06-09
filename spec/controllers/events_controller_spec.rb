@@ -83,21 +83,31 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe 'GET /events/:id' do
-    before do
-      @event = create(:event)
-      get :show, id: @event.id
+    context '存在するイベントIDが指定された場合' do
+      before do
+        @event = create(:event)
+        get :show, id: @event.id
+      end
+
+      it 'ステータスコードが200であること' do
+        expect(response.status).to eq 200
+      end
+
+      it 'ビューとして show.html.erb が呼ばれること' do
+        expect(response).to render_template 'show'
+      end
+
+      it '@event にパラメータで渡したイベントIDと一致するインスタンスが格納されていること' do
+        expect(assigns(:event).id).to eq @event.id
+      end
     end
 
-    it 'ステータスコードが200であること' do
-      expect(response.status).to eq 200
-    end
+    context '存在しないイベントIDが指定された場合' do
+      before { get :show, id: 0 }
 
-    it 'ビューとして show.html.erb が呼ばれること' do
-      expect(response).to render_template 'show'
-    end
-
-    it '@event にパラメータで渡したイベントIDと一致するインスタンスが格納されていること' do
-      expect(assigns(:event).id).to eq @event.id
+      it 'イベント一覧画面にリダイレクトされること' do
+        expect(response).to redirect_to action: 'index'
+      end
     end
   end
 end

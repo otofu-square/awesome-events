@@ -1,8 +1,15 @@
 class EventsController < ApplicationController
   before_action :authenticate
 
+  def index
+  end
+
   def show
-    @event = Event.find(params[:id])
+    if Event.exists?(params[:id])
+      @event = Event.find(params[:id])
+    else
+      redirect_to Event
+    end
   end
 
   def new

@@ -81,4 +81,17 @@ RSpec.describe EventsController, type: :controller do
       let(:response) { post :create }
     end
   end
+
+  describe 'GET /events/:id' do
+    before do
+      @event = create(:event)
+      get :show, id: @event.id
+    end
+
+    it 'ステータスコードが200であること'
+
+    it 'ビューとして show.html.erb が呼ばれること'
+    
+    it '@event にパラメータで渡したイベントIDと一致するインスタンスが格納されていること'
+  end
 end

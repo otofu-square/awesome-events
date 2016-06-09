@@ -88,10 +88,14 @@ RSpec.describe EventsController, type: :controller do
       get :show, id: @event.id
     end
 
-    it 'ステータスコードが200であること'
+    it 'ステータスコードが200であること' do
+      expect(response.status).to eq 200
+    end
 
-    it 'ビューとして show.html.erb が呼ばれること'
-    
+    it 'ビューとして show.html.erb が呼ばれること' do
+      expect(response).to render_template 'show'
+    end
+
     it '@event にパラメータで渡したイベントIDと一致するインスタンスが格納されていること'
   end
 end

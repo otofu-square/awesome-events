@@ -11,6 +11,11 @@ RSpec.describe EventsController, type: :controller do
       get :new
     end
 
+    it 'ユーザ認証が行われること' do
+      is_expected.to receive(:authenticate)
+      get :new
+    end
+
     it 'ステータスコードが200であること' do
       expect(response.status).to eq 200
     end
@@ -26,6 +31,11 @@ RSpec.describe EventsController, type: :controller do
   end
 
   describe 'POST /events/' do
+    it 'ユーザ認証が行われること' do
+      is_expected.to receive(:authenticate)
+      post :new, attributes_for(:event)
+    end
+
     context '登録成功するとき' do
       context 'フォームに全てのデータが入力されているとき' do
         before do

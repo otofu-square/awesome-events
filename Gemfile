@@ -64,3 +64,4 @@ group :development do
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
 end
+gem 'nokogiri', '>= 1.6.8'

@@ -1,0 +1,37 @@
+- now = Time.zone.now
+
+.page-header
+  h1
+    | イベント作成
+
+= form_for(@event, class: 'form-horizontal', role: 'form') do |f|
+  - if @event.errors.any?
+    .alert.alert-danger
+      ul
+        - @event.errors.full_messages.each do |msg|
+          li
+            = msg
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+
+  .form-group
+    = f.label :place
+    = f.text_field :place, class: 'form-control'
+
+  .form-group
+    = f.label :start_time
+    .
+      = f.datetime_select :start_time, start_year: now.year, end_year: now.year + 1
+      
+  .form-group
+    = f.label :end_time
+    .
+      = f.datetime_select :end_time, start_year: now.year, end_year: now.year + 1
+  
+  .form-group
+    = f.label :content
+    = f.text_field :content, class: 'form-control', row: 10
+
+  = f.submit '作成', class: 'btn btn-default', data: { disable_with: '作成中…' }

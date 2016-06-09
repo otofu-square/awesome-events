@@ -96,6 +96,8 @@ RSpec.describe EventsController, type: :controller do
       expect(response).to render_template 'show'
     end
 
-    it '@event にパラメータで渡したイベントIDと一致するインスタンスが格納されていること'
+    it '@event にパラメータで渡したイベントIDと一致するインスタンスが格納されていること' do
+      expect(assigns(:event).id).to eq @event.id
+    end
   end
 end

@@ -1,14 +1,11 @@
 class EventsController < ApplicationController
   before_action :authenticate
 
-  def index
-  end
-
   def show
     if Event.exists?(params[:id])
       @event = Event.find(params[:id])
     else
-      redirect_to Event, alert: 'ご指定のイベントは存在しません。'
+      redirect_to root_path, alert: 'ご指定のイベントは存在しません。'
     end
   end
 

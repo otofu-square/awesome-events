@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'omniauth'
 gem 'omniauth-twitter'
 
+gem 'dotenv-rails'
 gem 'slim-rails'
 
 # Use ActiveModel has_secure_password
@@ -36,6 +37,10 @@ gem 'slim-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :staging, :production do
+  gem 'unicorn'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -65,5 +70,11 @@ group :development do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
+
+  # Deploy tool
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
 end
 gem 'nokogiri', '>= 1.6.8'

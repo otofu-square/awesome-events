@@ -105,8 +105,8 @@ RSpec.describe EventsController, type: :controller do
     context '存在しないイベントIDが指定された場合' do
       before { get :show, id: 0 }
 
-      it 'イベント一覧画面にリダイレクトされること' do
-        expect(response).to redirect_to action: 'index'
+      it 'トップページにリダイレクトされること' do
+        expect(response).to redirect_to root_path
       end
 
       it 'flash[:alert] に「ご指定のイベントは存在しません。」という文字列が格納されていること' do

@@ -4,9 +4,14 @@ RSpec.describe WelcomeController, type: :controller do
   describe 'GET /events/:id' do
     before { get :index }
 
-    it 'ステータスコードが200であること'
-    it 'ビューとして index.html.erb が呼ばれること'
-    
+    it 'ステータスコードが200であること' do
+      expect(response.status).to eq 200
+    end
+
+    it 'ビューとして index.html.erb が呼ばれること' do
+      expect(response).to render_template 'index'
+    end
+
     context '現在時刻以降に開催予定のイベントが1つ以上存在する場合' do
       it '開催日時が現在時刻以降のイベントが全件表示されること'
       it '開催日時の昇順でイベントが取得できること'
